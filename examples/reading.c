@@ -10,7 +10,7 @@ int main() {
 
     /* Open archive for reading */
     int open_err = mtar_open(&tar, "test.tar", "r");
-    if ( open_err != MTAR_ESUCCESS ) {
+    if (open_err != MTAR_ESUCCESS) {
         fprintf_s(stderr, "Could not open test.tar for reading: %d \n", open_err);
         return 1;
     }

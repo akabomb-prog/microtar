@@ -229,7 +229,7 @@ int mtar_init_mem_stream(mtar_mem_stream_t *mem, void *buff, size_t size)
 
 
 int mtar_open_mem(mtar_t *tar, mtar_mem_stream_t *mem) {
-  if ( !mem || !mem->data || !mem->size ) {
+  if (!mem || !mem->data || !mem->size) {
     return MTAR_EOPENFAIL;
   }
 

@@ -11,7 +11,7 @@ int main() {
 
     /* Open archive for writing */
     int open_err = mtar_open(&tar, "test.tar", "w");
-    if ( open_err != MTAR_ESUCCESS ) {
+    if (open_err != MTAR_ESUCCESS) {
         fprintf_s(stderr, "Could not open test.tar for writing: %d \n", open_err);
         return 1;
     }
