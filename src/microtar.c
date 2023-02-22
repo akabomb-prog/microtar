@@ -75,7 +75,7 @@ static int twrite(mtar_t *tar, const void *data, size_t size) {
 
 
 static int write_null_bytes(mtar_t *tar, int n) {
-  int i, err;
+  int err;
   char nul[MTAR_NULL_BLOCKSIZE];
   memset(nul, 0, sizeof(nul));
   while (n > 0) {
@@ -175,7 +175,7 @@ static int file_close(mtar_t *tar) {
   return MTAR_ESUCCESS;
 }
 
-static int mem_write(mtar_t *tar, const void *data, unsigned size) {
+static int mem_write(mtar_t *tar, const void *data, size_t size) {
   mtar_mem_stream_t *mem = tar->stream;
 
   if(!mem || mem->pos + size >= mem->size) {
@@ -188,7 +188,7 @@ static int mem_write(mtar_t *tar, const void *data, unsigned size) {
   return MTAR_ESUCCESS;
 }
 
-static int mem_read(mtar_t *tar, void *data, unsigned size) {
+static int mem_read(mtar_t *tar, void *data, size_t size) {
   mtar_mem_stream_t *mem = tar->stream;
 
   if(!mem || mem->pos + size >= mem->size) {
@@ -201,7 +201,7 @@ static int mem_read(mtar_t *tar, void *data, unsigned size) {
   return MTAR_ESUCCESS;
 }
 
-static int mem_seek(mtar_t *tar, unsigned offset) {
+static int mem_seek(mtar_t *tar, long offset) {
   mtar_mem_stream_t *mem = tar->stream;
 
   if(!mem || offset >= mem->size)
@@ -224,13 +224,11 @@ int mtar_init_mem_stream(mtar_mem_stream_t *mem, void *buff, size_t size)
 	mem->data = buff;
 	mem->size = size;
 	mem->pos = 0;
+  return MTAR_ESUCCESS;
 }
 
 
 int mtar_open_mem(mtar_t *tar, mtar_mem_stream_t *mem) {
-  int err;
-  mtar_header_t h;
-
   if ( !mem || !mem->data || !mem->size ) {
     return MTAR_EOPENFAIL;
   }

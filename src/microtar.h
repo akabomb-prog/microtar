@@ -14,6 +14,7 @@ extern "C"
 #endif
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #define MTAR_VERSION "0.1.0"
@@ -59,7 +60,7 @@ struct mtar_t {
   int (*write)(mtar_t *tar, const void *data, size_t size);
   int (*seek)(mtar_t *tar, long pos);
   int (*close)(mtar_t *tar);
-  FILE *stream;
+  void *stream;
   size_t pos;
   size_t remaining_data;
   size_t last_header;
