@@ -88,6 +88,8 @@ fwrite(buffer, data_len, 1, fp);
 fclose(fp);
 ```
 
+The `examples` directory contains basic programs with the code snippets above.
+
 
 ## Error handling
 All functions which return an `int` will return `MTAR_ESUCCESS` if the operation
